@@ -143,6 +143,8 @@ public class TarefaView extends javax.swing.JFrame {
     private void jbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverActionPerformed
         String nome = jtCampoTarefa.getText();
         controle.removerTarefa(nome);
+        listarTarefas();
+        jtCampoTarefa.setText("");
     }//GEN-LAST:event_jbRemoverActionPerformed
 
     private void jbConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConcluirActionPerformed

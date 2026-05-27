@@ -24,12 +24,14 @@ public class TarefaController {
     
     public void removerTarefa(String nome){
         
-        for(TarefaModel tarefa : lista){
-            if(tarefa.getNome().equalsIgnoreCase(nome)){
-                System.out.println("a");
-                //lista.remove(tarefa);
+        for(int i = 0; i < lista.size(); i++){
+            TarefaModel tarefa = (TarefaModel) lista.get(i);
+            
+            if (tarefa.getNome() != null && tarefa.getNome().equalsIgnoreCase(nome)) {
+                lista.remove(i);
+                i--;
             }
-    }
+        }
     }
 
     //Metodo Listar
