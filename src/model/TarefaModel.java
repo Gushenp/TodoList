@@ -35,6 +35,4 @@ public class TarefaModel {
             return "- [ㅤㅤ] " + nome;
         }
     }
-    
-    
 }
