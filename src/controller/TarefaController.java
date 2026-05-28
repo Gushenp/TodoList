@@ -16,11 +16,11 @@ public class TarefaController {
             lista.add(tarefa);
         } else {
             if (verificarDuplicatas(nome) == false){
-                JOptionPane.showMessageDialog(null, "Essa tarefa já existe!!!");
+                mostrarMensagem("Essa tarefa já existe!!!");
             } 
             
             if (nome.isBlank()){
-                JOptionPane.showMessageDialog(null, "O campo NOME não pode estar vazio.");
+                mostrarMensagem("O campo NOME não pode estar vazio!");
             }
         }
     }
@@ -30,7 +30,7 @@ public class TarefaController {
            if(tarefa.getNome().equalsIgnoreCase(nome) && !nome.isBlank()){
                tarefa.setConcluida(true);
            } else {
-               JOptionPane.showMessageDialog(null, "Selelecione antes uma tarefa para concluir.");
+               mostrarMensagem("Selelecione antes uma tarefa para concluir.");
            }
         }
     };
@@ -56,6 +56,9 @@ public class TarefaController {
         return true;
     }
 
+    private void mostrarMensagem(String mensagem){
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
     //Metodo Listar 
     
     public ArrayList<TarefaModel> lista(){
