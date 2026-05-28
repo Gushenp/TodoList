@@ -2,6 +2,7 @@
 package view;
 
 import controller.TarefaController;
+import javax.swing.SwingContainer;
 import model.TarefaModel;
 
 public class TarefaView extends javax.swing.JFrame {
@@ -145,25 +146,18 @@ public class TarefaView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdicionarActionPerformed
-        String nome = jtCampoTarefa.getText();
-        controle.adicionar(nome);
-        jtCampoTarefa.setText("");
-        
+        controle.adicionar(coletarEntradaNome());
         listarTarefas();
     }//GEN-LAST:event_jbAdicionarActionPerformed
 
     private void jbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRemoverActionPerformed
-        String nome = jtCampoTarefa.getText();
-        controle.removerTarefa(nome);
+        controle.removerTarefa(coletarEntradaNome());
         listarTarefas();
-        jtCampoTarefa.setText("");
     }//GEN-LAST:event_jbRemoverActionPerformed
 
     private void jbConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConcluirActionPerformed
-        String nome = jtCampoTarefa.getText();
-        controle.marcarConcluida(nome, true);
+        controle.marcarConcluida(coletarEntradaNome());
         listarTarefas();
-        jtCampoTarefa.setText("");
     }//GEN-LAST:event_jbConcluirActionPerformed
 
     public static void main(String args[]) {
@@ -196,8 +190,16 @@ public class TarefaView extends javax.swing.JFrame {
         });
     }
     
+    private String coletarEntradaNome(){
+        return jtCampoTarefa.getText();
+    }
+    
     private void listarTarefas(){
+        //Limpar campos
         taLista.setText("");
+        jtCampoTarefa.setText("");
+        
+        //Adicionar Lista
         int qnt = 0;
         for( TarefaModel t : controle.lista()){
             taLista.append(t.toString());
@@ -205,12 +207,18 @@ public class TarefaView extends javax.swing.JFrame {
             qnt++;
         }
         
+        //Quantidade de tarefas
+        quantidadeDeTarefas(qnt);
+    }
+    
+    private void quantidadeDeTarefas(int qnt){
         if (qnt == 0){
             JLQuantTarefasPendentes.setText("Você não tem tarefas!");
         } else {
             JLQuantTarefasPendentes.setText("Tarefas pendentes: " + qnt + ".");  
         }
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLQuantTarefasPendentes;

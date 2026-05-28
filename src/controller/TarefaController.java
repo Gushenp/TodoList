@@ -11,11 +11,11 @@ public class TarefaController {
     // Metodo Adiconar
     
     public void adicionar(String nome){
-        if (!nome.isBlank() && verificarDulicatas(nome)){        
+        if (!nome.isBlank() && verificarDuplicatas(nome)){        
             TarefaModel tarefa = new TarefaModel(nome);
             lista.add(tarefa);
         } else {
-            if (verificarDulicatas(nome) == false){
+            if (verificarDuplicatas(nome) == false){
                 JOptionPane.showMessageDialog(null, "Essa tarefa já existe!!!");
             } 
             
@@ -25,7 +25,7 @@ public class TarefaController {
         }
     }
     
-    public void marcarConcluida(String nome, boolean status){
+    public void marcarConcluida(String nome){
        for(TarefaModel tarefa : lista){
            if(tarefa.getNome().equalsIgnoreCase(nome) && !nome.isBlank()){
                tarefa.setConcluida(true);
@@ -46,7 +46,7 @@ public class TarefaController {
         }
     }
     
-    private boolean verificarDulicatas(String nome){
+    private boolean verificarDuplicatas(String nome){
         for(int i = 0; i < lista.size(); i++){
             TarefaModel tarefa = (TarefaModel) lista.get(i);
             if (tarefa.getNome().equalsIgnoreCase(nome)){
